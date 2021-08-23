@@ -6,7 +6,7 @@ BIN = /usr/local/bin
 
 H   = .
 
-VERSIONID = 9.0.7
+VERSIONID = 9.0.4
 
 # gcc
 CC       = gcc
@@ -42,13 +42,13 @@ MEAS_SRCS =  measures.c  m_map.c m_P.c m_num_q.c m_num_ret.c m_num_rel.c \
 	m_prefs_simp_ret.c m_prefs_pair_ret.c m_prefs_avgjg_ret.c\
         m_prefs_avgjg_Rnonrel_ret.c \
 	m_prefs_simp_imp.c m_prefs_pair_imp.c m_prefs_avgjg_imp.c\
-        m_map_avgjg.c m_Rprec_mult_avgjg.c m_P_avgjg.c m_yaap.c
+        m_map_avgjg.c m_Rprec_mult_avgjg.c m_P_avgjg.c m_yaap.c m_mrr_cut.c m_dcg_cut.c
 
 SRCS = $(TOP_SRCS) $(FORMAT_SRCS) $(MEAS_SRCS)
 
-SRCH = common.h trec_eval.h sysfunc.h functions.h trec_format.h 
+SRCH = common.h trec_eval.h sysfunc.h functions.h trec_format.h
 
-SRCOTHER = README Makefile test bpref_bug CHANGELOG windows
+SRCOTHER = README Makefile test bpref_bug CHANGELOG
 
 trec_eval: $(SRCS) Makefile $(SRCH)
 	$(CC) $(CFLAGS)  -o trec_eval $(SRCS) -lm

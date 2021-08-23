@@ -57,7 +57,7 @@
         long eval_index;
     } TREC_MEAS;
 */
-
+extern TREC_MEAS te_meas_dcg_cut;
 extern TREC_MEAS te_meas_runid;
 extern TREC_MEAS te_meas_num_q;
 extern TREC_MEAS te_meas_num_ret;
@@ -68,6 +68,7 @@ extern TREC_MEAS te_meas_gm_map;
 extern TREC_MEAS te_meas_Rprec;
 extern TREC_MEAS te_meas_bpref;
 extern TREC_MEAS te_meas_recip_rank;
+extern TREC_MEAS te_meas_recip_rank_cut;
 extern TREC_MEAS te_meas_iprec_at_recall;
 extern TREC_MEAS te_meas_P;
 extern TREC_MEAS te_meas_relstring;
@@ -83,7 +84,6 @@ extern TREC_MEAS te_meas_ndcg;
 extern TREC_MEAS te_meas_ndcg_rel;
 extern TREC_MEAS te_meas_Rndcg;
 extern TREC_MEAS te_meas_ndcg_cut;
-extern TREC_MEAS te_meas_map_cut;
 extern TREC_MEAS te_meas_relative_P;
 extern TREC_MEAS te_meas_success;
 extern TREC_MEAS te_meas_set_P;
@@ -110,8 +110,11 @@ extern TREC_MEAS te_meas_map_avgjg;
 extern TREC_MEAS te_meas_P_avgjg;
 extern TREC_MEAS te_meas_Rprec_mult_avgjg;
 extern TREC_MEAS te_meas_yaap;
+extern TREC_MEAS te_meas_map_cut;
 
 TREC_MEAS *te_trec_measures[] = {
+    &te_meas_dcg_cut,
+    &te_meas_map_cut,
     &te_meas_runid,
     &te_meas_num_q,
     &te_meas_num_ret,
@@ -122,6 +125,7 @@ TREC_MEAS *te_trec_measures[] = {
     &te_meas_Rprec,
     &te_meas_bpref,
     &te_meas_recip_rank,
+    &te_meas_recip_rank_cut,
     &te_meas_iprec_at_recall,
     &te_meas_P,
     &te_meas_relstring,
@@ -137,7 +141,6 @@ TREC_MEAS *te_trec_measures[] = {
     &te_meas_ndcg_rel,
     &te_meas_Rndcg,
     &te_meas_ndcg_cut,
-    &te_meas_map_cut,
     &te_meas_relative_P,
     &te_meas_success,
     &te_meas_set_P,
@@ -172,12 +175,12 @@ static char *off_names[] =  {
     "Rprec", "bpref", "recip_rank", "iprec_at_recall", "P", NULL};
 static char *trec_names[] =  {
     "runid", "num_q", "num_ret", "num_rel", "num_rel_ret", "map", "gm_map",
-    "Rprec", "bpref", "recip_rank", "iprec_at_recall", "P", "relstring",
+    "Rprec", "bpref", "recip_rank", "recip_rank_cut", "iprec_at_recall", "P", "relstring",
     "recall", "infAP","gm_bpref",
     "utility", "11pt_avg", "ndcg", "relative_P", "Rprec_mult", "success",
     "map_cut", "ndcg_cut", "ndcg_rel", "Rndcg", "binG", "G",
     "set_P", "set_recall", "set_relative_P", "set_map", "set_F",
-    "num_nonrel_judged_ret",
+    "num_nonrel_judged_ret", "dcg_cut",
     NULL};
 static char *set_names[] =  {
     "runid", "num_q", "num_ret", "num_rel", "num_rel_ret", "utility", "set_P",
