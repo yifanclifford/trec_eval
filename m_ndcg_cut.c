@@ -14,7 +14,7 @@ double log2(double x);
 static int 
 te_calc_ndcg_cut (const EPI *epi, const REL_INFO *rel_info,
 		  const RESULTS *results, const TREC_MEAS *tm, TREC_EVAL *eval);
-static long long_cutoff_array[] = {1, 5, 10, 15, 20, 30, 100, 200, 500, 1000};
+static long long_cutoff_array[] = {2, 5, 10, 15, 20, 30, 100, 200, 500, 1000};
 static PARAMS default_ndcg_cutoffs = {
     NULL, sizeof (long_cutoff_array) / sizeof (long_cutoff_array[0]),
     &long_cutoff_array[0]};
@@ -29,7 +29,7 @@ TREC_MEAS te_meas_ndcg_cut =
     Gain values are the relevance values in the qrels file.  For now, if you\n\
     want different gains, change the qrels file appropriately.\n\
     Cutoffs must be positive without duplicates\n\
-    Default params: -m ndcg_cut.5,10,15,20,30,100,200,500,1000\n\
+    Default params: -m ndcg_cut.1,5,10,15,20,30,100,200,500,1000\n\
     Based on an implementation by Ian Soboroff\n",
      te_init_meas_a_float_cut_long,
      te_calc_ndcg_cut,
@@ -62,16 +62,16 @@ te_calc_ndcg_cut (const EPI *epi, const REL_INFO *rel_info,
             eval->values[tm->eval_index + cutoff_index].value = sum;
             if (++cutoff_index == tm->meas_params->num_params)
                 break;
-	    if (epi->debug_level > 0) 
-		printf("ndcg_cut: cutoff %ld dcg %6.4f\n", i, sum);
+		    if (epi->debug_level > 0) 
+			printf("ndcg_cut: cutoff %ld dcg %6.4f\n", i, sum);
         }
-	gain = res_rels.results_rel_list[i];
-	if (gain > 0) {
-	    /* Note: i+2 since doc i has rank i+1 */
-	    sum += gain / log2((double) (i+2));
-	    if (epi->debug_level > 1) 
-		printf("ndcg_cut:%ld %3.1f %6.4f\n", i, gain, sum);
-	}
+		gain = res_rels.results_rel_list[i];
+		if (gain > 0) {
+		    /* Note: i+2 since doc i has rank i+1 */
+		    sum += gain / log2((double) (i+2));
+		    if (epi->debug_level > 1) 
+			printf("ndcg_cut:%ld %3.1f %6.4f\n", i, gain, sum);
+		}
     }
     /* calculate values for those cutoffs not achieved */
     while (cutoff_index < tm->meas_params->num_params) {
