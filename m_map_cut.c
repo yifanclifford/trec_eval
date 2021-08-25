@@ -13,7 +13,7 @@
 static int 
 te_calc_map_cut (const EPI *epi, const REL_INFO *rel_info,
 		 const RESULTS *results, const TREC_MEAS *tm, TREC_EVAL *eval);
-static long long_cutoff_array[] = {5, 10, 15, 20, 30, 100, 200, 500, 1000};
+static long long_cutoff_array[] = {1, 5, 10, 15, 20, 30, 100, 200, 500, 1000};
 static PARAMS default_map_cutoffs = {
     NULL, sizeof (long_cutoff_array) / sizeof (long_cutoff_array[0]),
     &long_cutoff_array[0]};
